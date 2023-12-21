@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+    <h1>Listar Carros</h1>
+    
+    <form class="d-flex mb-5" role="search" method="get">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Pesquisar" name="q" id="q">
+        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+    </form>
+    
+    <ul class="list-group list-group-flush">
+        {% for carro in carros %}
+            <li class="list-group-item">
+              {{ carro.modelo }}
+              {{ carro.ano }}
+              {{ carro.placa }}
+              {% if carro.avatar %}
+              <img src="{{ carro.avatar.url }}" alt="" width="60">
+              {% else %}
+              <img src="https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449_1280.png" alt="" width="30">
+              {% endif %}      
+              <a href="{% url 'detalhar' carro.id %}">Detalhar</a>
+            </li>
+        {% endfor %}
+    </ul>
+   
+{% endblock %}

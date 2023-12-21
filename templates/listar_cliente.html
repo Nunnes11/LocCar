@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+    <h1>Listar Clientes</h1>
+    
+    <form class="d-flex mb-5" role="search" method="get">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Pesquisar" name="q" id="q">
+        <button class="btn btn-outline-success" type="submit">Pesquisar</button>
+      </form>
+    <ul>
+        {% for cliente in clientes %}
+            <li>{{ cliente.nome }}
+                {{ cliente.email }}
+
+                {% if cliente.avatar %}
+                <img src="{{ cliente.avatar.url }}" alt="" width="60">
+                {% else %}
+                
+                {% endif %}      
+                <a href="{% url 'detalhar_cliente' cliente.id %}">Detalhar</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

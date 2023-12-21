@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if cliente.avatar %}
+    <img src="{{ cliente.avatar.url }}" alt="" width="100">
+    {% else %}
+    <img src="https://cdn.pixabay.com/photo/2016/09/01/08/24/smiley-1635449_1280.png" alt="" width="100">
+    {% endif %}
+
+<p>Nome: {{ cliente.nome }}</p>
+<p>E-mail: {{ cliente.email }}</p>
+
+<a class="btn btn-primary" href="{% url 'atualizar_cliente' cliente.id %}">Atualizar cliente</a>
+<a class="btn btn-danger" href="{% url 'deletar_cliente' cliente.id %}">Deletar cliente</a>
+<br><br>
+<a href="{% url 'listar_cliente' %}">Voltar para a lista</a>
+{% endblock %}
